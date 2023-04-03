@@ -3,6 +3,8 @@ from digi.xbee.models.address import XBee64BitAddress
 from collections.abc import Callable
 from enum import unique, Enum
 
+import time
+
 class XbeeListener:
     # This class is used to create xbee receiving listeners
 
@@ -94,6 +96,13 @@ class Xbee:
         # This closes the connection to the xbee
         self.__xbee.close()
 
-xbee = Xbee()
 
-xbee.send("Test message", XBeeAddress.P)
+def print_message(address, message):
+    print(message)
+
+xbee = Xbee()
+listener = XbeeListener(print_message)
+xbee.add_listener(listener)
+
+while True:
+    time.sleep(1)

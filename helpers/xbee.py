@@ -52,6 +52,8 @@ class Xbee:
         address = xbee_message.remote_device.get_64bit_addr()
         data = xbee_message.data.decode("utf8")
 
+        print(data)
+
         self.notify(address, data)
 
     def send(self, message, remote: XBeeAddress):

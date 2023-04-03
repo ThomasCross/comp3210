@@ -1,5 +1,6 @@
 import time
 import serial
+import json
 
 import adafruit_gps
 
@@ -24,6 +25,13 @@ while True:
     if not gps.has_fix:
         print('Waiting for fix...')
         continue
-    print('=' * 40)  # Print a separator line.
-    print('Latitude: {0:.6f} degrees'.format(gps.latitude))
-    print('Longitude: {0:.6f} degrees'.format(gps.longitude))
+    #print('=' * 40)  # Print a separator line.
+    #print('Latitude: {0:.6f} degrees'.format(gps.latitude))
+    #print('Longitude: {0:.6f} degrees'.format(gps.longitude))
+
+    coords = {
+        "lat": float("{0:.6f}".format(gps.latitude)),
+        "long": float("{0:.6f}".format(gps.longitude))
+    }
+
+    print(json.dumps(coords))

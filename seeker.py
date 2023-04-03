@@ -7,9 +7,7 @@ from math import cos, asin, sqrt, pi
 
 gps = GPS()
 lcd = LCD()
-#xbee = Xbee()
-
-
+xbee = Xbee()
 
 def distance(runner, seeker):
     p = pi/180
@@ -28,7 +26,7 @@ def update_screen(address, message):
 
     distance_to = distance(runner_coords, seeker_coords)
 
-    lcd.lcd_display_string("Distance>Runner         ", 1, 0)
+    lcd.lcd_display_string("Distance2Runner         ", 1, 0)
     lcd.lcd_display_string("{:.1f}m                      ".format(distance_to), 2, 0)
     print("{:.1f}m".format(distance_to))
 
@@ -49,15 +47,9 @@ while True:
 lcd.lcd_display_string("Awaiting runner         ", 1, 0)
 lcd.lcd_display_string("GPS coordinates         ", 2, 0)
 
-runner_coords = {
-    "lat": float(51.348190),
-    "long": float(-0.204196)
-}
-update_screen("", json.dumps(runner_coords))
-
-input()
-
 # Setup XBee
 listener = XbeeListener(update_screen)
-#xbee.add_listener(listener)
+xbee.add_listener(listener)
 
+while True:
+    time.sleep(1)
