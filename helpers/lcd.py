@@ -87,7 +87,7 @@ Rs = 0b00000001 # Register select bit
 
 #endregion
 
-class lcd:
+class LCD:
    #initializes objects and lcd
    def __init__(self):
       self.lcd_device = i2c_device(ADDRESS)
