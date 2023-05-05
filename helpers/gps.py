@@ -29,5 +29,5 @@ class GPS:
             else:
                 self.__last = '{0:.6f}'.format(self.__gps.latitude), '{0:.6f}'.format(self.__gps.longitude)  
 
-    def get_lat_long(self):
+    def get_gps(self):
         return self.__last
